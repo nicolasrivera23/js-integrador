@@ -7,14 +7,26 @@
     <link type="text/css" rel="stylesheet" href="./assets/css/custom.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script>
-      function calcTotal () {
-        valor = document.getElementById('cantInput').value;
-        valor = parseInt(valor);
+      function calcTotal() {
+        cant = document.getElementById('cantInput').value;
+        cant = parseInt(cant);
         total = 0;
-        total = valor * 200;
-        let update = document.getElementById('cantTotal2').innerHTML;
-        update = toString(total);
-        alert(total);
+        total = cant * 200;
+        categoria = document.getElementById('categ').value;
+        
+        if(categoria == 1) {
+          total = 80000;
+        };
+        if(categoria == 2) {
+          total = 78000;
+        };
+        if(categoria == 3) {
+          total = 2;
+        };
+        document.getElementById('cantTotal').innerHTML ="Total a Pagar: " + total + " $";
+      }
+      function clearForm() {
+        document.getElementById('cantTotal').innerHTML = "Total a Pagar: $";
       }
     </script>
   </head>
@@ -23,8 +35,8 @@
 			<section id="menu">
 				<nav class="navbar navbar-expand-lg bg-dark">
 						<div class="container-fluid">
-							<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon"></span>
+						  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							  <span class="navbar-toggler-icon"></span>
 							</button>
 							<div class="collapse navbar-collapse" id="navbarSupportedContent">
 								<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -57,6 +69,7 @@
 						</div>
 					</nav>
 		</section>
+    <!-- SECTION FORMULARIO -->
     <section id="formulario">
       <div class="container">
         <div class="row mx-1">
@@ -111,7 +124,7 @@
           <h3 class="fw-bold">VALOR DE TICKET 200$</h3>
         </div>   
         <div class="row">
-          <form>
+          <form id="myForm">
           <div class="col d-flex align-items-center mb-3">
               <input type="text" id="nameInput" class="form-control" placeholder="Nombre">
               <input type="text" id="lastNameInput" class="form-control" placeholder="Apellido">
@@ -124,11 +137,11 @@
           <div class="col d-flex align-items-center mb-4">
             <div class="me-auto">
               <label for="cantInput" class="form-label">Cantidad</label>
-              <input type="number" id="cantInput" class="form-control">
+              <input type="number" id="cantInput" class="form-control" min="1" required>
             </div>
             <div class="me-auto">
               <label for="catSelect" class="form-label">Categoría</label>
-              <select class="form-select" aria-label="Elija una categoría">
+              <select id="categ" class="form-select" aria-label="Elija una categoría">
                 <option selected>Elige una categoría..</option>
                 <option value="1">Estudiante</option>
                 <option value="2">Trainee</option>
@@ -144,11 +157,22 @@
         </div>
         <div class="row">
           <div class="col d-flex align-items-center mb-3">
-            <button type="submit" class="btn btn-success mb-3">Borrar</button>
-            <button type="submit" class="btn btn-primary mb-3" onclick="calcTotal()">Resumen</button>
+            <button type="reset" class="btn btn-success mb-3" onclick="clearForm()">Borrar</button>
+            <button type="button" class="btn btn-primary mb-3" onclick="calcTotal()">Resumen</button>
           </div>
         </div>
         </form>
+      </div>
+    </section>
+    <section style="background-color: #232323; color: azure; height: 350px;">
+      <div class="container-fluid">
+        <h2 class="text-center">Titulo</h2>
+        <div id="kunio" class="card border-0" style="height: 180px; width: 150px;">
+          <img src="./assets/img/cheer.png" alt="cheer" class="img-fluid" style="filter:brightness(80%);">
+            <button class="btn" id="botontix" style="font-size: 1.5vw;">
+              Click Acá 
+            </button>
+        </div>
       </div>
     </section>
     <!-- sección footer o pie de pagina-->
